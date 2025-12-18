@@ -7,7 +7,7 @@
   * OmniSharp LSP server
   * Unity tool [kotpodlawkoy sln generator](https://github.com/kotpodlawkoy/kotpodlawkoy.sln.csproj.generator)
  
-# Ссылка на web _build_
+# Ссылка на web build
 []()
 
 # Проведённая работа
