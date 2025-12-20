@@ -7,7 +7,13 @@ public class Spawnmanager : MonoBehaviour
     public float topIndent;
     public float startDelay = 2f, spawnInterval = 10f, maxSpawnTime;
     private static System.Random rand = new ();
+    private ObjectPooling pool;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake ()
+    {
+        pool = GameObject.Find ( "Object Pool" ).GetComponent < ObjectPooling > ();
+    }
     void Start()
     {
         
@@ -28,7 +34,7 @@ public class Spawnmanager : MonoBehaviour
         Quaternion posQua = Quaternion.Euler( 0f, 90f, 0f);
         if ( animalX < topBorder - bottomBorder )
         {
-            Instantiate ( animalPrefabs [ animalType ],
+            pool.ActivatePoolObject ( animalPrefabs [ animalType ],
                           new Vector3 ( leftBorder,
                                         animalPrefabs [ animalType ].transform.position.y,
                                         bottomBorder + animalX / topIndent ),
@@ -36,7 +42,7 @@ public class Spawnmanager : MonoBehaviour
         }
         else if ( animalX < topBorder - bottomBorder + rightBorder - leftBorder )
         {
-            Instantiate ( animalPrefabs [ animalType ],
+            pool.ActivatePoolObject ( animalPrefabs [ animalType ],
                           new Vector3 ( leftBorder + animalX - topBorder + bottomBorder,
                                         animalPrefabs [ animalType ].transform.position.y,
                                         topBorder ),
@@ -44,7 +50,7 @@ public class Spawnmanager : MonoBehaviour
         }
         else
         {
-            Instantiate ( animalPrefabs [ animalType ],
+            pool.ActivatePoolObject ( animalPrefabs [ animalType ],
                           new Vector3 ( rightBorder,
                                         animalPrefabs [ animalType ].transform.position.y,
                                         bottomBorder + ( animalX - topBorder + bottomBorder - rightBorder + leftBorder ) / topIndent ),

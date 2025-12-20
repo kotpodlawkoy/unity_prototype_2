@@ -4,12 +4,17 @@ public class DetectCollision : MonoBehaviour
 {
     public int animalHealth;
     private float currentHealth;
+    private ObjectPooling pool;
     public int animalDamage;
     public int playerDamage;
     
     public GameObject BackgroundBar;
     public GameObject HpBar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake ()
+    {
+        pool = GameObject.Find ( "Object Pool" ).GetComponent < ObjectPooling > ();
+    }
     void Start()
     {
        currentHealth = animalHealth; 
@@ -28,7 +33,7 @@ public class DetectCollision : MonoBehaviour
         {
             if ( ( currentHealth - playerDamage ) <= 0 )
             {
-                Destroy ( gameObject );
+                pool.DeactivatePoolObject ( gameObject );
             }
             else
             {
@@ -37,7 +42,7 @@ public class DetectCollision : MonoBehaviour
                                                            HpBar.transform.localScale.y,
                                                            HpBar.transform.localScale.z );
             }
-            Destroy ( other.gameObject );
+            pool.DeactivatePoolObject ( other.gameObject );
         }
 
         if ( other.gameObject.CompareTag ( "Player" ) )
@@ -50,13 +55,13 @@ public class DetectCollision : MonoBehaviour
             }
             if ( ( hp - animalDamage ) <= 0 )
             {
-                Destroy ( other.gameObject );
+                pool.DeactivatePoolObject ( other.gameObject );
             }
             else
             {
                 playerController.PlayerHealth -= animalDamage;
             }
-            Destroy ( gameObject );
+            pool.DeactivatePoolObject ( gameObject );
         }
     }
 }

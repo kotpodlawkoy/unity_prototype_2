@@ -4,10 +4,11 @@ public class DeathTrigger : MonoBehaviour
 {
     public int damage;
     private int health = 100;
+    private ObjectPooling pool;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        pool = GameObject.Find ( "Object Pool" ).GetComponent < ObjectPooling > ();
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class DeathTrigger : MonoBehaviour
         {
             if ( health - damage < 0 )
             {
-                Destroy ( gameObject );
+                pool.DeactivatePoolObject ( gameObject );
             }
             else
             {

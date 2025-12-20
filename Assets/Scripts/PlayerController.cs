@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     public int playerHealth = 100;
     private float _currentHealth;
+    private ObjectPooling pool;
+
     public GameObject BackgroundBar;
     public GameObject HpBar;
     public float PlayerHealth
@@ -32,6 +34,11 @@ public class PlayerController : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake ()
+    {
+        pool = GameObject.Find ( "Object Pool" ).GetComponent < ObjectPooling > ();
+    }
+    
     void Start()
     {
         _currentHealth = playerHealth;
@@ -46,7 +53,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate ( Vector3.right * horizontalInput * strafeSpeed * Time.deltaTime );
         if ( Input.GetKeyDown ( KeyCode.Space ) )
         {
-            Instantiate ( projectile, new Vector3 ( transform.position.x, 0.5f, transform.position.z ), projectile.transform.rotation );
+            pool.ActivatePoolObject ( projectile, new Vector3 ( transform.position.x, 0.5f, transform.position.z ), projectile.transform.rotation );
         }
     }
     void LateUpdate ()
