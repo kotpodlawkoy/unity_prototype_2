@@ -8,7 +8,7 @@
   * Unity tool [kotpodlawkoy sln generator](https://github.com/kotpodlawkoy/kotpodlawkoy.sln.csproj.generator)
  
 # Ссылка на web build
-[]()
+[паиграц](https://play.unity.com/en/games/36c0c98b-4220-436e-9770-c50f7ce61f41/prototype2)
 
 # Проведённая работа
 > **Говоря о рандоме, автор подразумевает очевидно _псевдо-_ рандомный алгоритм на основе _псевдо-_ рандомного алгоритма Random.Range ()**
